@@ -11,6 +11,7 @@ import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { zodResolver } from "@hookform/resolvers/zod";
 import schema from "@/app/api/issues/schema";
 import { z } from "zod";
+import Spinner from "@/app/components/Spinner";
 
 type IssueForm = z.infer<typeof schema>;
 
@@ -25,6 +26,7 @@ const NewIssuePage = () => {
   });
   const router = useRouter();
   const [error, setError] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
   return (
     <div className="max-w-xl">
       {error && (
@@ -41,8 +43,10 @@ const NewIssuePage = () => {
           try {
             await axios.post("/api/issues", data);
             router.push("/issues");
+            setIsSubmitted(true);
           } catch (e) {
             setError("An unexpected error has occured");
+            setIsSubmitted(false);
           }
         })}
       >
@@ -67,7 +71,7 @@ const NewIssuePage = () => {
             {errors.description.message}
           </Text>
         )}
-        <Button>Submit New Issue</Button>
+        <Button disabled={isSubmitted} >Submit New Issue {isSubmitted && <Spinner />} </Button>
       </form>
     </div>
   );
