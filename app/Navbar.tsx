@@ -13,7 +13,7 @@ const Navbar = () => {
   ];
   const currentPath = usePathname();
   return (
-    <nav className="flex space-x-6 px-5 border-b h-14 mb-5 items-center">
+    <nav className="flex space-x-6 px-5 border-b border-b-zinc-600 h-14 mb-5 items-center">
       <Link href="/">
         <FaBug />
       </Link>
@@ -23,9 +23,9 @@ const Navbar = () => {
             <li key={id}>
               <Link
                 className={classnames({
-                  "text-zinc-900": link.href === currentPath,
-                  "text-zinc-500": link.href !== currentPath,
-                  "hover:text-zinc-800 transition-colors": true,
+                  "text-zinc-500": link.href === currentPath,
+                  "text-zinc-200": link.href !== currentPath,
+                  "hover:text-zinc-600 transition-colors": true,
                 })}
                 href={link.href}
               >

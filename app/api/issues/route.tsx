@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from '@/prisma/client'
 import schema from "./schema";
-import { error } from "console";
 
 // Post an Issue
 export async function POST(request: NextRequest) {
