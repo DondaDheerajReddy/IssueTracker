@@ -9,7 +9,7 @@ import classnames from "classnames";
 const Navbar = () => {
   const links = [
     { label: "Dashboard", href: "/" },
-    { label: "Issues", href: "/issues" },
+    { label: "Issues", href: "/issues" }, 
   ];
   const currentPath = usePathname();
   return (
