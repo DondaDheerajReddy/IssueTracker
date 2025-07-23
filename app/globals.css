@@ -1,11 +1,11 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 :root {
-  --font-poppins: 'Poppins', sans-serif;
-  --font-inter: 'Inter', 'Poppins', sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+  --font-inter: "Inter", "Poppins", sans-serif;
 }
 
 body .radix-themes {
-	--default-font-family: var(--font-inter) !important ;
+  --default-font-family: var(--font-inter) !important ;
 }
-
