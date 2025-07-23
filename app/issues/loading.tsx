@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import IssueStatusBadge from "../components/IssueStatusBadge";
+import IssueButton from "./IssueButton";
 
 const issues = [1, 2, 3, 4, 5];
 
@@ -11,9 +11,7 @@ const loading = () => {
   return (
     <div>
       <div className="mb-5">
-        <Button>
-          <Link href="/issues/new">New Issue</Link>
-        </Button>
+        <IssueButton />
       </div>
       <Table.Root variant="surface">
         <Table.Header>
