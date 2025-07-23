@@ -1,22 +1,22 @@
 "use client";
-
+import schema from "@/app/api/issues/schema";
+import EditorSkeleton from "@/app/components/EditorSkeleton";
+import Spinner from "@/app/components/Spinner";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { Button, Callout, Text, TextField } from "@radix-ui/themes";
-import dynamic from "next/dynamic";
-const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
-  ssr: false,
-  loading: () => <EditorSkeleton />,
-});
-import "easymde/dist/easymde.min.css";
-import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
+import "easymde/dist/easymde.min.css";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { InfoCircledIcon } from "@radix-ui/react-icons";
-import { zodResolver } from "@hookform/resolvers/zod";
-import schema from "@/app/api/issues/schema";
+import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
-import Spinner from "@/app/components/Spinner";
-import EditorSkeleton from "@/app/components/EditorSkeleton";
+import SimpleMDE from "react-simplemde-editor";
+// const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
+//   ssr: false,
+//   loading: () => <EditorSkeleton />,
+// });
 
 type IssueForm = z.infer<typeof schema>;
 
@@ -54,7 +54,7 @@ const NewIssuePage = () => {
           <Callout.Text>{error}</Callout.Text>
         </Callout.Root>
       )}
-      <form className="space-y-4 " onSubmit={onSubmit}>
+      <form className="space-y-3" onSubmit={onSubmit}>
         <TextField.Root
           placeholder="Title..."
           {...register("title")}
@@ -77,7 +77,7 @@ const NewIssuePage = () => {
           </Text>
         )}
         <Button disabled={isSubmitted}>
-          Submit New Issue {isSubmitted && <Spinner />}{" "}
+          Submit New Issue {isSubmitted && <Spinner />}
         </Button>
       </form>
     </div>
