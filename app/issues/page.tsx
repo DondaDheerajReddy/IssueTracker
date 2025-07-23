@@ -7,7 +7,7 @@ import delay from "delay";
 
 const PageFile = async () => {
   const issues = await prisma.issue.findMany();
-  await delay(1000);
+  await delay(500);
   return (
     <div>
       <div className="mb-5">
@@ -33,7 +33,7 @@ const PageFile = async () => {
             return (
               <Table.Row key={issue.id}>
                 <Table.Cell>
-                  {issue.title}
+                  <Link href={`/issues/${issue.id}`}>{issue.title}</Link>
                   <div className="block md:hidden">
                     <IssueStatusBadge status={issue.status} />
                   </div>
