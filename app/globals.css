@@ -9,7 +9,3 @@
 body .radix-themes {
   --default-font-family: var(--font-inter) !important ;
 }
-
-nextjs-portal {
-  display: none;
-}
