@@ -4,7 +4,7 @@ import Spinner from "@/app/components/Spinner";
 import { Issue } from "@/app/generated/prisma";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
-import { Button, Callout, Heading, Text, TextField } from "@radix-ui/themes";
+import { Button, Callout, Text, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
 import dynamic from "next/dynamic";
