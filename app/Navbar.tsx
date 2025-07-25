@@ -4,6 +4,8 @@ import classnames from "classnames";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaBug } from "react-icons/fa6";
+import { useSession } from "next-auth/react";
+import { Box } from "@radix-ui/themes";
 
 const Navbar = () => {
   const links = [
@@ -11,6 +13,7 @@ const Navbar = () => {
     { label: "Issues", href: "/issues" },
   ];
   const currentPath = usePathname();
+  const { status, data: session } = useSession();
   return (
     <nav className="flex space-x-6 px-5 border-b border-b-zinc-600 h-14 mb-5 items-center">
       <Link href="/">
@@ -34,6 +37,14 @@ const Navbar = () => {
           );
         })}
       </ul>
+      <Box>
+        {status === "authenticated" && (
+          <Link href="/api/auth/signout">Logout</Link>
+        )}
+        {status === "unauthenticated" && (
+          <Link href="/api/auth/signin">Login</Link>
+        )}
+      </Box>
     </nav>
   );
 };
