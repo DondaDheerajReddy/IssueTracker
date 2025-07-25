@@ -1,12 +1,21 @@
 import { prisma } from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import schema from "../schema";
+import { getServerSession } from "next-auth";
+import authOptions from "../../auth/authOptions";
+import { error } from "console";
 
 interface Props {
   params: Promise<{ id: string }>;
 }
 
 export async function PATCH(request: NextRequest, { params }: Props) {
+  const session = await getServerSession(authOptions);
+  if (!session)
+    return NextResponse.json(
+      { error: "User Authentication required" },
+      { status: 401 }
+    );
   const { id } = await params;
   const body = await request.json();
   const validation = schema.safeParse(body);
@@ -28,6 +37,12 @@ export async function PATCH(request: NextRequest, { params }: Props) {
 }
 
 export async function DELETE(request: NextRequest, { params }: Props) {
+  const session = await getServerSession(authOptions);
+  if (!session)
+    return NextResponse.json(
+      { error: "User Authentication required" },
+      { status: 401 }
+    );
   const { id } = await params;
   const issue = await prisma.issue.findUnique({
     where: { id: parseInt(id) },
