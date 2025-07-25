@@ -1,5 +1,5 @@
 "use client";
-import schema from "@/app/api/issues/schema";
+import { schema } from "@/app/api/issues/schema";
 import Spinner from "@/app/components/Spinner";
 import { Issue } from "@/app/generated/prisma";
 import { zodResolver } from "@hookform/resolvers/zod";
