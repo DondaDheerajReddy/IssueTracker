@@ -3,9 +3,27 @@ import { Table } from "@radix-ui/themes";
 import IssueStatusBadge from "../components/IssueStatusBadge";
 import Link from "../components/Link";
 import IssueButton from "./IssueButton";
+import { Status } from "../generated/prisma";
 
-const PageFile = async () => {
-  const issues = await prisma.issue.findMany();
+interface Props {
+  searchParams?: Promise<{
+    status: "OPEN" | "CLOSED" | "IN_PROGRESS" | "ALL";
+  }>;
+}
+
+const PageFile = async ({ searchParams }: Props) => {
+  const statuses: string[] = Object.values(Status);
+  statuses.push("ALL");
+  const sp = await searchParams;
+  let status;
+  if (!sp) status = "ALL";
+  status = statuses.includes(sp!.status) ? sp!.status : "ALL";
+  let issues;
+  if (!status || status === "ALL") issues = await prisma.issue.findMany();
+  else
+    issues = await prisma.issue.findMany({
+      where: { status: status },
+    });
   return (
     <div>
       <div className="mb-5">
