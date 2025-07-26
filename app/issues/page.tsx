@@ -24,6 +24,9 @@ const PageFile = async ({ searchParams }: Props) => {
     issues = await prisma.issue.findMany({
       skip: (issuePage - 1) * pageSize,
       take: pageSize,
+      orderBy: {
+        createdAt: "desc",
+      },
     });
   } else {
     issueCount = await prisma.issue.count({ where: { status: rawStatus } });
@@ -32,6 +35,9 @@ const PageFile = async ({ searchParams }: Props) => {
       where: { status: rawStatus },
       skip: (issuePage - 1) * pageSize,
       take: pageSize,
+      orderBy: {
+        createdAt: "desc",
+      },
     });
   }
   return (
