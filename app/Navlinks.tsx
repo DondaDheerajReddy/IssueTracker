@@ -16,7 +16,7 @@ const Navlinks = () => {
       <Link href="/">
         <FaBug />
       </Link>
-      <ul className="flex space-x-6">
+      <ul className="flex space-x-7">
         {links.map((link, id) => {
           return (
             <li key={id}>
