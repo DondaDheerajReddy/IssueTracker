@@ -4,6 +4,7 @@ import IssueStatusBadge from "../components/IssueStatusBadge";
 import Link from "../components/Link";
 import IssueButton from "./IssueButton";
 import Pagination from "../Pagination";
+import { Metadata } from "next";
 
 interface Props {
   searchParams?: Promise<{
@@ -91,5 +92,10 @@ const PageFile = async ({ searchParams }: Props) => {
 };
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Issue Tracker - Issue List",
+  description: "View all the issues of your project at one palce",
+};
 
 export default PageFile;
